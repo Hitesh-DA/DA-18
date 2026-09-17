@@ -1,0 +1,140 @@
+table order_items
+	lineageTag: a115f09f-53d5-4ada-bac7-d23258015358
+
+	column order_id
+		dataType: string
+		lineageTag: fd773de0-ef43-4a65-b7c7-a6a8d4e1e206
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 0a880353-804a-46da-b723-b52ce9b03148
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 6a6f72ac-8825-4fbf-a51e-8c02af15d017
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: cc4c64dd-1fbd-4b55-a6fc-6ef23b18482a
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: double
+		lineageTag: a4404bb9-2837-4554-a256-1c6417b924b2
+		summarizeBy: sum
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column discount_percentage
+		dataType: double
+		lineageTag: af0e6cc1-68dd-453a-9df4-206e6710f8f6
+		summarizeBy: sum
+		sourceColumn: discount_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column discount_amount
+		dataType: double
+		lineageTag: 8ffde6cf-65c9-45b7-ace5-037928491f5f
+		summarizeBy: sum
+		sourceColumn: discount_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gross_sales
+		dataType: double
+		lineageTag: 764c71e4-6852-44bb-b3c1-dd6fabdf2fd6
+		summarizeBy: sum
+		sourceColumn: gross_sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tax_amount
+		dataType: double
+		lineageTag: 6006de34-1d89-4225-aa9f-f5c04fc84ee0
+		summarizeBy: sum
+		sourceColumn: tax_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column shipping_cost
+		dataType: double
+		lineageTag: 48ec5d6e-ce13-4ff6-8c7a-72968c122c42
+		summarizeBy: sum
+		sourceColumn: shipping_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_sales
+		dataType: double
+		lineageTag: 020a1267-7827-4f13-98cd-59920f8e02ac
+		summarizeBy: sum
+		sourceColumn: net_sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_cost
+		dataType: double
+		lineageTag: 5214b566-9bde-44b1-b8ea-632c758ab3b7
+		summarizeBy: sum
+		sourceColumn: product_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column profit
+		dataType: double
+		lineageTag: 3b96c70c-5a13-4896-b96e-7753b7087a01
+		summarizeBy: sum
+		sourceColumn: profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition order_items = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ASDC23\Downloads\order_items.csv"),[Delimiter=",", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"order_id", type text}, {"product_id", type text}, {"customer_id", type text}, {"quantity", Int64.Type}, {"unit_price", type number}, {"discount_percentage", type number}, {"discount_amount", type number}, {"gross_sales", type number}, {"tax_amount", type number}, {"shipping_cost", type number}, {"net_sales", type number}, {"product_cost", type number}, {"profit", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

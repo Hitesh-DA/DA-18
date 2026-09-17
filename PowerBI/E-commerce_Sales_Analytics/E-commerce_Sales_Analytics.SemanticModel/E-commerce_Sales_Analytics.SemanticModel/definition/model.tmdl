@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["product_catalog","customer_master","dataset_statistics","ecommerce_sales_customer_analytics_150k","order_items"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table product_catalog
+ref table customer_master
+ref table dataset_statistics
+ref table ecommerce_sales_customer_analytics_150k
+ref table DateTableTemplate_66876e0f-e6a5-4c12-8890-d450de8541ce
+ref table LocalDateTable_8d71e044-9667-42a4-9316-fc7c70c6266b
+ref table order_items
+
+ref cultureInfo en-US
+

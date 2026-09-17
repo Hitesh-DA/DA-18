@@ -1,0 +1,115 @@
+table dataset_statistics
+	lineageTag: e3fea242-67fa-412d-9a14-53f1b82efcf2
+
+	column 'Total Transactions'
+		dataType: int64
+		formatString: 0
+		lineageTag: 140f1585-5827-4504-b643-52b8c6a2bba4
+		summarizeBy: sum
+		sourceColumn: Total Transactions
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Columns'
+		dataType: int64
+		formatString: 0
+		lineageTag: b8ecd657-5323-4e24-ad77-350195f8850d
+		summarizeBy: sum
+		sourceColumn: Total Columns
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Customers'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6fed6c7e-3e13-4c9c-ae4d-51e1e1afc852
+		summarizeBy: sum
+		sourceColumn: Total Customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Products Used'
+		dataType: int64
+		formatString: 0
+		lineageTag: 756b17da-2844-4543-95ef-deebd1379a3e
+		summarizeBy: sum
+		sourceColumn: Total Products Used
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Range'
+		dataType: string
+		lineageTag: 577b4a58-6454-40f5-bc96-e7dde8d59c11
+		summarizeBy: none
+		sourceColumn: Date Range
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Revenue'
+		dataType: string
+		lineageTag: 12f599f1-f962-4a5e-bce6-60a4649fa224
+		summarizeBy: none
+		sourceColumn: Total Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Profit'
+		dataType: string
+		lineageTag: a74bc3f5-981b-4dae-a6d5-f1a06f7ed0b7
+		summarizeBy: none
+		sourceColumn: Total Profit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Average Order Value'
+		dataType: string
+		lineageTag: 7c6b4885-3b71-43e9-9a46-de49d78274b5
+		summarizeBy: none
+		sourceColumn: Average Order Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Average Rating'
+		dataType: double
+		lineageTag: e8e0348a-8104-4ed0-b804-c3c6a1b0f5db
+		summarizeBy: sum
+		sourceColumn: Average Rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Return Rate'
+		dataType: double
+		lineageTag: 15b3bb83-b49b-4f3c-aa98-b0175e7318d7
+		summarizeBy: sum
+		sourceColumn: Return Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cancellation Rate'
+		dataType: double
+		lineageTag: 97f5b6d2-24c9-4ae5-aeec-616b4133cafb
+		summarizeBy: sum
+		sourceColumn: Cancellation Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dataset_statistics = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ASDC23\Downloads\dataset_statistics.csv"),[Delimiter=",", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Total Transactions", Int64.Type}, {"Total Columns", Int64.Type}, {"Total Customers", Int64.Type}, {"Total Products Used", Int64.Type}, {"Date Range", type text}, {"Total Revenue", type text}, {"Total Profit", type text}, {"Average Order Value", type text}, {"Average Rating", type number}, {"Return Rate", Percentage.Type}, {"Cancellation Rate", Percentage.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

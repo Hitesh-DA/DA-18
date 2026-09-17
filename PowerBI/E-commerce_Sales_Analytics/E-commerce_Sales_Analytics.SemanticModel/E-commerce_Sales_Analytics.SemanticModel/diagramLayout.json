@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 75
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 18,
+            "y": 0
+          },
+          "nodeIndex": "product_catalog",
+          "nodeLineageTag": "f1595b37-7239-4913-882c-d4cc1d69b56d",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 465,
+            "y": 373
+          },
+          "nodeIndex": "customer_master",
+          "nodeLineageTag": "9431fa06-fdbf-4b7a-a40e-a779b756ed71",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 791,
+            "y": 341
+          },
+          "nodeIndex": "dataset_statistics",
+          "nodeLineageTag": "e3fea242-67fa-412d-9a14-53f1b82efcf2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 884,
+            "y": 0
+          },
+          "nodeIndex": "ecommerce_sales_customer_analytics_150k",
+          "nodeLineageTag": "3911a3b4-d4ed-4c06-8336-f3a8af220fb0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 467,
+            "y": 0
+          },
+          "nodeIndex": "order_items",
+          "nodeLineageTag": "a115f09f-53d5-4ada-bac7-d23258015358",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
